@@ -152,15 +152,15 @@ class TreeNode {
 
       const queue = [this.root];
 
-      while (queue.length > 0) {
+      while (queue.length) {
         const node = queue.shift();
-        console.log(node.value);
+        console.log(node.val);
 
-        if (node.left !== null) {
+        if (node.left) {
           queue.push(node.left);
         }
 
-        if (node.right !== null) {
+        if (node.right) {
           queue.push(node.right);
         }
       }
