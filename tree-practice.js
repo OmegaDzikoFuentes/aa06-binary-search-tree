@@ -19,25 +19,98 @@ function findMaxBST (rootNode) {
 }
 
 function findMinBT (rootNode) {
-  let leftMin = findMinBST(rootNode.left)
-  let rightMin = findMinBST(rootNode.right)
+  if(!rootNode){
+    return rootNode
+  }
+  let min = rootNode.val
+  let stack = [rootNode]
 
+  while(stack.length){
+
+    let node = stack.pop()
+    // console.log(node.val)
+    if(node.val < min){
+      min = node.val
+    }
+    if(node.left){
+      stack.push(node.left)
+    }
+    if(node.right){
+      stack.push(node.right)
+    }
+  }
+  // console.log(min, 'min number')
+  return min
 }
 
 function findMaxBT (rootNode) {
-  // Your code here
+  if(!rootNode){
+    return rootNode
+  }
+  let max = rootNode.val
+  let stack = [rootNode]
+
+  while(stack.length){
+
+    let node = stack.pop()
+    // console.log(node.val)
+    if(node.val > max){
+      max = node.val
+    }
+    if(node.left){
+      stack.push(node.left)
+    }
+    if(node.right){
+      stack.push(node.right)
+    }
+  }
+  // console.log(max, 'max number')
+  return max
+
 }
 
 function getHeight (rootNode) {
-  // Your code here
+  if(!rootNode){
+    return -1
+  }
+  if(rootNode.left === null && rootNode.right === null){
+    return 0
+  }
+
+  let counter1 = 1 + getHeight(rootNode.left)
+  let counter2 = 1 + getHeight(rootNode.right)
+  return Math.max(counter1, counter2)
 }
 
 function balancedTree (rootNode) {
-  // Your code here
+ let countL = getHeight(rootNode.left)
+ let countR = getHeight(rootNode.right)
+ if(Math.abs(countL - countR)){
+    
+ }
 }
 
 function countNodes (rootNode) {
-  // Your code here
+    if(!rootNode){
+    return rootNode
+  }
+  let max = 0
+  let stack = [rootNode]
+
+  while(stack.length){
+
+    let node = stack.pop()
+    max++
+
+    if(node.left){
+      stack.push(node.left)
+    }
+    if(node.right){
+      stack.push(node.right)
+    }
+  }
+  // console.log(max, 'max number')
+  return max
 }
 
 function getParentNode (rootNode, target) {
