@@ -83,11 +83,29 @@ function getHeight (rootNode) {
 }
 
 function balancedTree (rootNode) {
- let countL = getHeight(rootNode.left)
- let countR = getHeight(rootNode.right)
- if(Math.abs(countL - countR)){
-    
- }
+  if(!rootNode){
+    return true
+  }
+  let stack = [rootNode]
+  while(stack.length){
+    let currentNode = stack.pop()
+    let countL =  getHeight(currentNode.left)
+    let countR =  getHeight(currentNode.right)
+
+    if(Math.abs(countL - countR) > 1){
+      return false
+    }
+    if(currentNode?.left){
+      stack.push(currentNode.left)
+    }
+    if(currentNode?.right){
+      stack.push(currentNode.right)
+    }
+
+  }
+
+return true
+
 }
 
 function countNodes (rootNode) {
@@ -114,7 +132,36 @@ function countNodes (rootNode) {
 }
 
 function getParentNode (rootNode, target) {
-  // Your code here
+  if(rootNode.val === target){
+    return null
+  }
+
+  let stack = [rootNode]
+  while(stack.length){
+    let node = stack.pop()
+    
+    if(node.left !== null){
+      stack.push(node.left)
+      if(node.left.val === target){
+        return node
+      }
+    }
+
+    if(node.right !== null){
+      stack.push(node.right)
+      if(node.right.val === target){
+        return node
+      }
+    }
+    // if(node.left){
+    //   stack.push(node.left)
+    // }
+
+    // if(node.right){
+    //   stack.push(node.right)
+    // }
+  }
+  return undefined
 }
 
 function inOrderPredecessor (rootNode, target) {
