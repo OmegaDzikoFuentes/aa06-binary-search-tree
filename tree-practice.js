@@ -139,7 +139,7 @@ function getParentNode (rootNode, target) {
   let stack = [rootNode]
   while(stack.length){
     let node = stack.pop()
-    
+
     if(node.left !== null){
       stack.push(node.left)
       if(node.left.val === target){
@@ -165,7 +165,19 @@ function getParentNode (rootNode, target) {
 }
 
 function inOrderPredecessor (rootNode, target) {
-  // Your code here
+
+let arr = [];
+
+inOrderPredecessor(rootNode.left, target);
+
+arr.push(rootNode.val);
+
+inOrderPredecessor(rootNode.right, target);
+
+if(rootNode.left === null && rootNode.right === null) {
+
+  return arr.length - 2
+}
 }
 
 function deleteNodeBST(rootNode, target) {
